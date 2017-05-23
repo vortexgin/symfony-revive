@@ -51,6 +51,11 @@ class Agency implements AgencyInterface
     protected $affiliates;
 
     /**
+     * @var Clients $clients
+     */
+    protected $clients;
+
+    /**
      * Get ID
      *
      * @return int
@@ -208,6 +213,16 @@ class Agency implements AgencyInterface
     public function getAffiliates()
     {
         return $this->affiliates;
+    }
+
+    /**
+     * Get Clients
+     *
+     * @return Clients
+     */
+    public function getClients()
+    {
+        return $this->clients;
     }
 
 }

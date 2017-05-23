@@ -36,12 +36,15 @@ class AdZoneAssocManager extends AbstractManager
     {
         $query = $this->repository->createQueryBuilder('assoc')
             ->innerJoin('assoc.zone', 'zones')
+            ->innerJoin('zones.affiliate', 'affiliates')
             ->innerJoin('assoc.banner', 'banners')
             ->innerJoin('banners.campaign', 'campaigns')
             ->where('assoc.toBeDelivered = :toBeDelivered')
             ->andWhere('banners.status = :bannerStatus')
+            ->andWhere('affiliates.id = :affiliateId')
             ->setParameter('toBeDelivered', 1)
             ->setParameter('bannerStatus', 1)
+            ->setParameter('affiliateId', 4)
             ->orderBy('assoc.id', 'ASC')
         ;
 

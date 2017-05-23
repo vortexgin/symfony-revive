@@ -4,6 +4,7 @@ namespace Vortexgin\ReviveBundle\Model;
 
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\DependencyInjection\Container;
 use Doctrine\Common\Cache\ArrayCache;
 
@@ -52,7 +53,7 @@ abstract class AbstractManager
         return $this->entityManager;
     }
 
-    protected function isSupportedObject($object)
+    public function isSupportedObject($object)
     {
         if($object instanceof $this->class){
             return true;
@@ -61,7 +62,7 @@ abstract class AbstractManager
         return false;
     }
 
-    protected function serialize($object)
+    public function serialize($object)
     {
         if(!$this->isSupportedObject($object)){
             return false;
@@ -73,7 +74,17 @@ abstract class AbstractManager
         if(count($properties) > 0){
             foreach ($properties as $property){
                 $function = 'get'.ucfirst($property->getName());
-                $return[$property->getName()] = $object->$function;
+                if($object->$function() instanceof \DateTime) {
+                    $return[$property->getName()] = $object->$function()->format('Y-m-d G:i:s');
+                }elseif($object->$function() instanceof PersistentCollection) {
+                }elseif(is_object($object->$function())){
+                    $reflectionEntity = new \ReflectionClass($object->$function());
+                    $nameEntity = $reflectionEntity->getShortName();
+                    $managerEntity = $this->container->get('vortexgin.manager.revive.'.strtolower($nameEntity));
+                    $return[$property->getName()] = $managerEntity->serialize($object->$function());
+                }else{
+                    $return[$property->getName()] = $object->$function();
+                }
             }
         }
 
@@ -200,7 +211,7 @@ abstract class AbstractManager
         }
 
         if (is_object($object)) {
-            return $this->manager->merge($object);
+            return $this->entityManager->merge($object);
         }
 
         return $object;

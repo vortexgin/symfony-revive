@@ -36,6 +36,16 @@ class Accounts implements AccountsInterface
     protected $affiliates;
 
     /**
+     * @var Agency $agency
+     */
+    protected $agency;
+
+    /**
+     * @var Clients $clients
+     */
+    protected $clients;
+
+    /**
      * Get ID
      *
      * @return int
@@ -134,4 +144,25 @@ class Accounts implements AccountsInterface
     {
         return $this->affiliates;
     }
+
+    /**
+     * Get Agency
+     *
+     * @return Agency
+     */
+    public function getAgency()
+    {
+        return $this->agency;
+    }
+
+    /**
+     * Get Clients
+     *
+     * @return Clients
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
 }
