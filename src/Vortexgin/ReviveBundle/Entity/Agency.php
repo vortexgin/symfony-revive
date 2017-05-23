@@ -2,6 +2,7 @@
 
 namespace Vortexgin\ReviveBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Vortexgin\ReviveBundle\Annotation as Vortexgin;
 use Vortexgin\ReviveBundle\Model\Agency as ModelAgency;
@@ -25,7 +26,7 @@ class Agency extends ModelAgency
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Accounts", inversedBy="account")
+     * @ORM\ManyToOne(targetEntity="Accounts", inversedBy="agency")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="account_id", referencedColumnName="account_id")
      * })
@@ -62,8 +63,20 @@ class Agency extends ModelAgency
      */
     protected $updated;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Affiliates", mappedBy="agency", cascade={"persist"})
+     */
+    protected $affiliates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Clients", mappedBy="agency", cascade={"persist"})
+     */
+    protected $clients;
+
     public function __construct()
     {
+        $this->affiliates = new ArrayCollection();
+        $this->clients = new ArrayCollection();
     }
 
 }

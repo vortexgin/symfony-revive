@@ -23,9 +23,9 @@ class AffiliatesManager extends AbstractManager
      *
      * @param EntityManager $em
      */
-    public function __construct(Container $container)
+    public function __construct(Container $container, $class)
     {
-        parent::__construct($container);
+        parent::__construct($container, $class);
 
         $this->em         = $this->getEntityManager();
         $this->repository = $this->em->getRepository('VortexginReviveBundle:Affiliates');

@@ -188,6 +188,11 @@ class Campaigns implements CampaignsInterface
     protected $showCappedNoCookie;
 
     /**
+     * @var Banners
+     */
+    protected $banners;
+
+    /**
      * Get ID
      *
      * @return int

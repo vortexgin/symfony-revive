@@ -27,7 +27,7 @@ class Affiliates extends ModelAffiliates
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Agency", inversedBy="agency")
+     * @ORM\ManyToOne(targetEntity="Agency", inversedBy="affiliates")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="agencyid", referencedColumnName="agencyid")
      * })
@@ -35,7 +35,7 @@ class Affiliates extends ModelAffiliates
     protected $agency = 0;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Accounts", inversedBy="account")
+     * @ORM\ManyToOne(targetEntity="Accounts", inversedBy="affiliates")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="account_id", referencedColumnName="account_id")
      * })

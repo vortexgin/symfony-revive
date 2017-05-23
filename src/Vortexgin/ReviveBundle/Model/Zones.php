@@ -176,6 +176,11 @@ class Zones implements ZonesInterface
     protected $showCappedNoCookie;
 
     /**
+     * @var AdZoneAssoc $assocs
+     */
+    protected $assocs;
+
+    /**
      * Get ID
      *
      * @return int

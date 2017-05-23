@@ -26,16 +26,17 @@ abstract class AbstractManager
     protected $entityManager;
 
     /**
-     * @var string
+     * @var mixed
      */
-    protected $class = "_";
+    protected $class;
 
     /**
      * @param Container $container
      */
-    public function __construct(Container $container)
+    public function __construct(Container $container, $class)
     {
         $this->container = $container;
+        $this->class = $class;
         $entityManagerName = $this->container->getParameter('vortexgin.revive.entity_manager');
         $this->entityManager = $this->container->get('doctrine.orm.'.$entityManagerName.'_entity_manager');
 
@@ -49,6 +50,34 @@ abstract class AbstractManager
     protected function getEntityManager()
     {
         return $this->entityManager;
+    }
+
+    protected function isSupportedObject($object)
+    {
+        if($object instanceof $this->class){
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function serialize($object)
+    {
+        if(!$this->isSupportedObject($object)){
+            return false;
+        }
+
+        $return = array();
+        $reflectionClass = new \ReflectionClass($this->class);
+        $properties = $reflectionClass->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED);
+        if(count($properties) > 0){
+            foreach ($properties as $property){
+                $function = 'get'.ucfirst($property->getName());
+                $return[$property->getName()] = $object->$function;
+            }
+        }
+
+        return $return;
     }
 
     public function find($id)

@@ -31,6 +31,11 @@ class Accounts implements AccountsInterface
     protected $ticket;
 
     /**
+     * @var Affiliates $affiliate
+     */
+    protected $affiliates;
+
+    /**
      * Get ID
      *
      * @return int

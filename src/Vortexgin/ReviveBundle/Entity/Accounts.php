@@ -2,6 +2,7 @@
 
 namespace Vortexgin\ReviveBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Vortexgin\ReviveBundle\Annotation as Vortexgin;
 use Vortexgin\ReviveBundle\Model\Accounts as ModelAccounts;
@@ -44,8 +45,24 @@ class Accounts extends ModelAccounts
      */
     protected $ticket;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Affiliates", mappedBy="account", cascade={"persist"})
+     */
+    protected $affiliates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Agency", mappedBy="account", cascade={"persist"})
+     */
+    protected $agency;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Clients", mappedBy="account", cascade={"persist"})
+     */
+    protected $clients;
+
     public function __construct()
     {
+        $this->affiliates = new ArrayCollection();
     }
 
 }

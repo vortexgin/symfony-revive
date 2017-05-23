@@ -25,7 +25,7 @@ class Banners extends ModelBanners
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Campaigns", inversedBy="campaign")
+     * @ORM\ManyToOne(targetEntity="Campaigns", inversedBy="banners")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="campaignid", referencedColumnName="campaignid", columnDefinition="mediumint(9) NOT NULL DEFAULT '0'")
      * })
@@ -236,5 +236,15 @@ class Banners extends ModelBanners
      * @ORM\Column(name="prepend", type="text", nullable=false)
      */
     protected $prepend;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AdZoneAssoc", mappedBy="banner", cascade={"persist"})
+     */
+    protected $assocs;
+
+    public function __construct()
+    {
+        $this->assocs = new ArrayCollection();
+    }
 
 }

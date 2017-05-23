@@ -26,7 +26,7 @@ class AdZoneAssoc extends ModelAdZoneAssoc
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Zones", inversedBy="zone")
+     * @ORM\ManyToOne(targetEntity="Zones", inversedBy="assocs")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="zone_id", referencedColumnName="zoneid", columnDefinition="mediumint(9) DEFAULT NULL")
      * })
@@ -34,7 +34,7 @@ class AdZoneAssoc extends ModelAdZoneAssoc
     protected $zone;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Banners", inversedBy="banner")
+     * @ORM\ManyToOne(targetEntity="Banners", inversedBy="assocs")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ad_id", referencedColumnName="bannerid", columnDefinition="mediumint(9) DEFAULT NULL")
      * })

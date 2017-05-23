@@ -5,6 +5,7 @@ namespace Vortexgin\ReviveBundle\Model;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\DependencyInjection\Container;
+use Doctrine\ORM\Query;
 
 class AdZoneAssocManager extends AbstractManager
 {
@@ -23,9 +24,9 @@ class AdZoneAssocManager extends AbstractManager
      *
      * @param EntityManager $em
      */
-    public function __construct(Container $container)
+    public function __construct(Container $container, $class)
     {
-        parent::__construct($container);
+        parent::__construct($container, $class);
 
         $this->em         = $this->getEntityManager();
         $this->repository = $this->em->getRepository('VortexginReviveBundle:AdZoneAssoc');
@@ -34,16 +35,15 @@ class AdZoneAssocManager extends AbstractManager
     public function findActiveZones()
     {
         $query = $this->repository->createQueryBuilder('assoc')
-            ->select('zones.id, zones.zoneName, zones.width, zones.height, banners')
             ->innerJoin('assoc.zone', 'zones')
             ->innerJoin('assoc.banner', 'banners')
             ->innerJoin('banners.campaign', 'campaigns')
             ->where('assoc.toBeDelivered = :toBeDelivered')
-            ->andWhere('banner.status = :bannerStatus')
-            ->andWhere('campaigns.activateTime = :campaignActivateTime')
+            ->andWhere('banners.status = :bannerStatus')
             ->setParameter('toBeDelivered', 1)
             ->setParameter('bannerStatus', 1)
-            ->setParameter('campaignActivateTime', date('Y-m-d G:i:s'));
+            ->orderBy('id ASC')
+        ;
 
         return $this->getResult($query, Query::HYDRATE_OBJECT, true, 21600);
     }

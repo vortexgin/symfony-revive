@@ -221,6 +221,10 @@ class Banners implements BannersInterface
      */
     protected $prepend;
 
+    /**
+     * @var AdZoneAssoc $assocs
+     */
+    protected $assocs;
 
     /**
      * Get id

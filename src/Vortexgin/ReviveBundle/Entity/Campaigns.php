@@ -2,6 +2,7 @@
 
 namespace Vortexgin\ReviveBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Vortexgin\ReviveBundle\Annotation as Vortexgin;
 use Vortexgin\ReviveBundle\Model\Campaigns as ModelCampaigns;
@@ -26,17 +27,17 @@ class Campaigns extends ModelCampaigns
     protected $id;
 
     /**
-     * @ORM\Column(name="campaignname", type="string", length=255, nullable=false, options={"default" : ""})
-     */
-    protected $name;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Clients", inversedBy="client")
+     * @ORM\ManyToOne(targetEntity="Clients", inversedBy="campaigns")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="clientid", referencedColumnName="clientid")
      * })
      */
     protected $client;
+
+    /**
+     * @ORM\Column(name="campaignname", type="string", length=255, nullable=false, options={"default" : ""})
+     */
+    protected $name;
 
     /**
      * @ORM\Column(name="views", type="integer", nullable=true, options={"default" : "-1"})
@@ -203,8 +204,14 @@ class Campaigns extends ModelCampaigns
      */
     protected $showCappedNoCookie;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Banners", mappedBy="campaign", cascade={"persist"})
+     */
+    protected $banners;
+
     public function __construct()
     {
+        $this->banners = new ArrayCollection();
     }
 
 }

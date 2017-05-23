@@ -9,31 +9,39 @@ services:
         class: %vortexgin.revive.manager.accounts%
         arguments:
             - @service_container
+            - %vortexgin.revive.class.accounts%
     vortexgin.manager.revive.adzoneassoc:
         class: %vortexgin.revive.manager.adzoneassoc%
         arguments:
             - @service_container
+            - %vortexgin.revive.class.adzoneassoc%
     vortexgin.manager.revive.affiliates:
         class: %vortexgin.revive.manager.affiliates%
         arguments:
             - @service_container
+            - %vortexgin.revive.class.affiliates%
     vortexgin.manager.revive.agency:
         class: %vortexgin.revive.manager.agency%
         arguments:
             - @service_container
+            - %vortexgin.revive.class.agency%
     vortexgin.manager.revive.banners:
         class: %vortexgin.revive.manager.banners%
         arguments:
             - @service_container
+            - %vortexgin.revive.class.banners%
     vortexgin.manager.revive.campaigns:
         class: %vortexgin.revive.manager.campaigns%
         arguments:
             - @service_container
+            - %vortexgin.revive.class.campaigns%
     vortexgin.manager.revive.clients:
         class: %vortexgin.revive.manager.clients%
         arguments:
             - @service_container
+            - %vortexgin.revive.class.clients%
     vortexgin.manager.revive.zones:
         class: %vortexgin.revive.manager.zones%
         arguments:
             - @service_container
+            - %vortexgin.revive.class.zones%
