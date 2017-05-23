@@ -902,4 +902,13 @@ class Campaigns implements CampaignsInterface
         $this->showCappedNoCookie = $showCappedNoCookie;
     }
 
+    /**
+     * Get Banners
+     *
+     * @return Banners
+     */
+    public function getBanners()
+    {
+        return $this->banners;
+    }
 }

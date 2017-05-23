@@ -42,7 +42,7 @@ class AdZoneAssocManager extends AbstractManager
             ->andWhere('banners.status = :bannerStatus')
             ->setParameter('toBeDelivered', 1)
             ->setParameter('bannerStatus', 1)
-            ->orderBy('id ASC')
+            ->orderBy('assoc.id', 'ASC')
         ;
 
         return $this->getResult($query, Query::HYDRATE_OBJECT, true, 21600);

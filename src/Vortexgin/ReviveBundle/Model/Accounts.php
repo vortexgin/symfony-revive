@@ -125,4 +125,13 @@ class Accounts implements AccountsInterface
         $this->ticket = $ticket;
     }
 
+    /**
+     * Get Affiliates
+     *
+     * @return Affiliates
+     */
+    public function getAffiliates()
+    {
+        return $this->affiliates;
+    }
 }

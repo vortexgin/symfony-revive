@@ -850,4 +850,14 @@ class Zones implements ZonesInterface
         $this->showCappedNoCookie = $showCappedNoCookie;
     }
 
+    /**
+     * Get Assocs
+     *
+     * @return AdZoneAssoc
+     */
+    public function getAssocs()
+    {
+        return $this->assocs;
+    }
+
 }

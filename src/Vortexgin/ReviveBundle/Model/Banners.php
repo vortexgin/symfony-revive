@@ -1076,4 +1076,14 @@ class Banners implements BannersInterface
         return $this->prepend;
     }
 
+    /**
+     * Get Assocs
+     *
+     * @return AdZoneAssoc
+     */
+    public function getAssocs()
+    {
+        return $this->assocs;
+    }
+
 }
