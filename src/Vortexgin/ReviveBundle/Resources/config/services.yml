@@ -1,0 +1,39 @@
+services:
+    vortexgin.subscriber.revive.table_prefix:
+        class: %vortexgin.revive.table_prefix%
+        arguments:
+            - %vortexgin.revive.prefix%
+        tags:
+            - { name: doctrine.event_subscriber }
+    vortexgin.manager.revive.accounts:
+        class: %vortexgin.revive.manager.accounts%
+        arguments:
+            - @service_container
+    vortexgin.manager.revive.adzoneassoc:
+        class: %vortexgin.revive.manager.adzoneassoc%
+        arguments:
+            - @service_container
+    vortexgin.manager.revive.affiliates:
+        class: %vortexgin.revive.manager.affiliates%
+        arguments:
+            - @service_container
+    vortexgin.manager.revive.agency:
+        class: %vortexgin.revive.manager.agency%
+        arguments:
+            - @service_container
+    vortexgin.manager.revive.banners:
+        class: %vortexgin.revive.manager.banners%
+        arguments:
+            - @service_container
+    vortexgin.manager.revive.campaigns:
+        class: %vortexgin.revive.manager.campaigns%
+        arguments:
+            - @service_container
+    vortexgin.manager.revive.clients:
+        class: %vortexgin.revive.manager.clients%
+        arguments:
+            - @service_container
+    vortexgin.manager.revive.zones:
+        class: %vortexgin.revive.manager.zones%
+        arguments:
+            - @service_container

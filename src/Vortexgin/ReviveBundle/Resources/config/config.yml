@@ -1,0 +1,24 @@
+vortexgin_revive:
+    doctrine:
+        entity_manager: 'default'
+        table_prefix: 'ox_'
+    subscriber:
+        table_prefix: Vortexgin\ReviveBundle\Subscriber\TablePrefixSubscriber
+    manager:
+        accounts: Vortexgin\ReviveBundle\Model\AccountsManager
+        adzoneassoc: Vortexgin\ReviveBundle\Model\AdZoneAssocManager
+        affiliates: Vortexgin\ReviveBundle\Model\AffiliatesManager
+        agency: Vortexgin\ReviveBundle\Model\AgencyManager
+        banners: Vortexgin\ReviveBundle\Model\BannersManager
+        campaigns: Vortexgin\ReviveBundle\Model\CampaignsManager
+        clients: Vortexgin\ReviveBundle\Model\ClientsManager
+        zones: Vortexgin\ReviveBundle\Model\ZonesManager
+    class:
+        accounts: Vortexgin\ReviveBundle\Entity\Accounts
+        adzoneassoc: Vortexgin\ReviveBundle\Entity\AdZoneAssoc
+        affiliates: Vortexgin\ReviveBundle\Entity\Affiliates
+        agency: Vortexgin\ReviveBundle\Entity\Agency
+        banners: Vortexgin\ReviveBundle\Entity\Banners
+        campaigns: Vortexgin\ReviveBundle\Entity\Campaigns
+        clients: Vortexgin\ReviveBundle\Entity\Clients
+        zones: Vortexgin\ReviveBundle\Entity\Zones
