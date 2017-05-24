@@ -39,7 +39,7 @@ public function registerBundles()
 }
 ```
 
-#Configuration
+#Configuration 
 **Doctrine**
 
 This bundle requrie database connection. Make sure you have Doctrine configurated properly.
