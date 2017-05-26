@@ -5,8 +5,9 @@ namespace Vortexgin\ReviveBundle\Model;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\PersistentCollection;
-use Symfony\Component\DependencyInjection\Container;
 use Doctrine\Common\Cache\ArrayCache;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 abstract class AbstractManager
 {
@@ -32,9 +33,10 @@ abstract class AbstractManager
     protected $class;
 
     /**
-     * @param Container $container
+     * @param ContainerInterface $container
+     * @param mixed $class
      */
-    public function __construct(Container $container, $class)
+    public function __construct(ContainerInterface $container, $class)
     {
         $this->container = $container;
         $this->class = $class;

@@ -1,6 +1,7 @@
 A Symfony 2 bundle for providing Revive repositories.
 
 #Installation
+
 **Composer** 
 
 Add the bundle to composer.json
@@ -40,6 +41,7 @@ public function registerBundles()
 ```
 
 #Configuration 
+
 **Doctrine**
 
 This bundle requrie database connection. Make sure you have Doctrine configurated properly.

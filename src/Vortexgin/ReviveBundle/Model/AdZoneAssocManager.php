@@ -4,8 +4,8 @@ namespace Vortexgin\ReviveBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\DependencyInjection\Container;
 use Doctrine\ORM\Query;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AdZoneAssocManager extends AbstractManager
 {
@@ -22,9 +22,10 @@ class AdZoneAssocManager extends AbstractManager
     /**
      * Constructor.
      *
-     * @param EntityManager $em
+     * @param ContainerInterface $container
+     * @param mixed $class
      */
-    public function __construct(Container $container, $class)
+    public function __construct(ContainerInterface $container, $class)
     {
         parent::__construct($container, $class);
 
