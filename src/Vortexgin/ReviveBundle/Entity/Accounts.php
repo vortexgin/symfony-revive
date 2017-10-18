@@ -36,16 +36,6 @@ class Accounts extends ModelAccounts
     protected $name;
 
     /**
-     * @ORM\Column(name="m2m_password", type="string", length=32, nullable=true)
-     */
-    protected $password;
-
-    /**
-     * @ORM\Column(name="m2m_ticket", type="string", length=32, nullable=true)
-     */
-    protected $ticket;
-
-    /**
      * @ORM\OneToMany(targetEntity="Affiliates", mappedBy="account", cascade={"persist"})
      */
     protected $affiliates;

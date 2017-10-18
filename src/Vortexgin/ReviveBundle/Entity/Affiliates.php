@@ -78,11 +78,6 @@ class Affiliates extends ModelAffiliates
     protected $updated;
 
     /**
-     * @ORM\Column(name="an_website_id", type="integer", nullable=true)
-     */
-    protected $anWebsiteId;
-
-    /**
      * @ORM\Column(name="oac_country_code", columnDefinition="CHAR(2) NOT NULL")
      */
     protected $oacCountryCode;
@@ -96,11 +91,6 @@ class Affiliates extends ModelAffiliates
      * @ORM\Column(name="oac_category_id", type="integer", nullable=true)
      */
     protected $oacCategoryId;
-
-    /**
-     * @ORM\Column(name="as_website_id", type="integer", nullable=true)
-     */
-    protected $asWebsiteId;
 
     /**
      * @ORM\OneToMany(targetEntity="Zones", mappedBy="affiliate")

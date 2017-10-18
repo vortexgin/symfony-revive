@@ -89,16 +89,6 @@ class Clients extends ModelClients
     protected $updated;
 
     /**
-     * @ORM\Column(name="an_adnetwork_id", type="integer", nullable=true)
-     */
-    protected $anAdNetworkId;
-
-    /**
-     * @ORM\Column(name="as_advertiser_id", type="integer", nullable=true)
-     */
-    protected $asAdvertisorId;
-
-    /**
      * @ORM\Column(name="advertiser_limitation", columnDefinition="tinyint(1) NOT NULL DEFAULT '0'")
      */
     protected $advertisorLimitation;
