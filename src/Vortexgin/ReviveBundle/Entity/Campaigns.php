@@ -125,29 +125,9 @@ class Campaigns extends ModelCampaigns
     protected $sessionCapping;
 
     /**
-     * @ORM\Column(name="an_campaign_id", type="integer", nullable=true)
-     */
-    protected $anCampaignId;
-
-    /**
-     * @ORM\Column(name="as_campaign_id", type="integer", nullable=true)
-     */
-    protected $asCampaignId;
-
-    /**
      * @ORM\Column(name="status", type="integer", nullable=false, options={"default" : "0"})
      */
     protected $status;
-
-    /**
-     * @ORM\Column(name="an_status", type="integer", nullable=false, options={"default" : "0"})
-     */
-    protected $anStatus;
-
-    /**
-     * @ORM\Column(name="as_reject_reason", type="integer", nullable=false, options={"default" : "0"})
-     */
-    protected $asRejectReason;
 
     /**
      * @ORM\Column(name="hosted_views", type="integer", nullable=false, options={"default" : "0"})
