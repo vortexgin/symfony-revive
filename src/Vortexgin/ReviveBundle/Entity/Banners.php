@@ -2,62 +2,80 @@
 
 namespace Vortexgin\ReviveBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Vortexgin\ReviveBundle\Annotation as Vortexgin;
-use Vortexgin\ReviveBundle\Model\Campaigns as ModelCampaigns;
+use Vortexgin\ReviveBundle\Model\Banners as ModelBanners;
 
 /**
- * Campaigns
+ * Banners
  *
- * @ORM\Table(name="campaigns", indexes={
- *     @ORM\Index(name="ox_campaigns_clientid", columns={"clientid"})
+ * @ORM\Table(name="banners", indexes={
+ *     @ORM\Index(name="ox_banners_campaignid", columns={"campaignid"})
  * })
  * @ORM\Entity
  * @Vortexgin\OXTable
  */
-class Campaigns extends ModelCampaigns
+class Banners extends ModelBanners
 {
-
     /**
-     * @ORM\Column(name="campaignid", type="integer", length=3, nullable=false)
+     * @ORM\Column(name="bannerid", type="integer", length=3, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Clients", inversedBy="campaigns")
+     * @ORM\ManyToOne(targetEntity="Campaigns", inversedBy="banners")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="clientid", referencedColumnName="clientid")
+     *   @ORM\JoinColumn(name="campaignid", referencedColumnName="campaignid", columnDefinition="mediumint(9) NOT NULL DEFAULT '0'")
      * })
      */
-    protected $client;
+    protected $campaign;
 
     /**
-     * @ORM\Column(name="campaignname", type="string", length=255, nullable=false, options={"default" : ""})
+     * @ORM\Column(name="contenttype", columnDefinition="enum('gif','jpeg','png','html','swf','dcr','rpm','mov','txt') NOT NULL DEFAULT 'gif'")
      */
-    protected $name;
+    protected $contentType;
 
     /**
-     * @ORM\Column(name="views", type="integer", nullable=true, options={"default" : "-1"})
+     * @ORM\Column(name="pluginversion", type="integer", length=3, nullable=false, options={"default" : "0"})
      */
-    protected $views;
+    protected $pluginVersion;
 
     /**
-     * @ORM\Column(name="clicks", type="integer", nullable=true, options={"default" : "-1"})
+     * @ORM\Column(name="storagetype", columnDefinition="enum('sql','web','url','html','network','txt') NOT NULL DEFAULT 'sql'")
      */
-    protected $clicks;
+    protected $storageType;
 
     /**
-     * @ORM\Column(name="conversions", type="integer", nullable=true, options={"default" : "-1"})
+     * @ORM\Column(name="filename", type="string", length=255, nullable=false, options={"default" : ""})
      */
-    protected $conversions;
+    protected $filename;
 
     /**
-     * @ORM\Column(name="priority", type="integer", nullable=false, options={"default" : "0"})
+     * @ORM\Column(name="imageurl", type="string", length=255, nullable=false, options={"default" : "0"})
      */
-    protected $priority;
+    protected $imageUrl;
+
+    /**
+     * @ORM\Column(name="htmltemplate", type="text", nullable=false)
+     */
+    protected $htmlTemplate;
+
+    /**
+     * @ORM\Column(name="htmlcache", type="text", nullable=false)
+     */
+    protected $htmlCache;
+
+    /**
+     * @ORM\Column(name="width", type="smallint", nullable=false, options={"default" : "0"})
+     */
+    protected $width;
+
+    /**
+     * @ORM\Column(name="height", type="smallint", nullable=false, options={"default" : "0"})
+     */
+    protected $height;
 
     /**
      * @ORM\Column(name="weight", columnDefinition="tinyint(4) NOT NULL DEFAULT '1'")
@@ -65,49 +83,44 @@ class Campaigns extends ModelCampaigns
     protected $weight;
 
     /**
-     * @ORM\Column(name="target_impression", type="integer", nullable=false, options={"default" : "0"})
+     * @ORM\Column(name="seq", type="integer", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
      */
-    protected $targetImpression;
+    protected $seq;
 
     /**
-     * @ORM\Column(name="target_click", type="integer", nullable=false, options={"default" : "0"})
+     * @ORM\Column(name="target", type="string", length=16, nullable=false, options={"default" : ""})
      */
-    protected $targetClick;
+    protected $target;
 
     /**
-     * @ORM\Column(name="target_conversion", type="integer", nullable=false, options={"default" : "0"})
+     * @ORM\Column(name="url", type="text", nullable=false)
      */
-    protected $targetConversion;
+    protected $url;
 
     /**
-     * @ORM\Column(name="anonymous", columnDefinition="enum('t','f') NOT NULL DEFAULT 'f'")
+     * @ORM\Column(name="alt", type="string", length=255, nullable=false, options={"default" : ""})
      */
-    protected $anonymous;
+    protected $alt;
 
     /**
-     * @ORM\Column(name="companion", type="smallint", nullable=false, options={"default" : "0"})
+     * @ORM\Column(name="statustext", type="string", length=255, nullable=false, options={"default" : ""})
      */
-    protected $companion;
+    protected $statusText;
 
     /**
-     * @ORM\Column(name="comments", type="text", nullable=true)
+     * @ORM\Column(name="bannertext", type="text", nullable=false)
      */
-    protected $comments;
+    protected $bannerText;
 
     /**
-     * @ORM\Column(name="revenue", columnDefinition="decimal(10,4) DEFAULT NULL")
+     * @ORM\Column(name="description", type="string", length=255, nullable=false, options={"default" : ""})
      */
-    protected $revenue;
+    protected $description;
 
     /**
-     * @ORM\Column(name="revenue_type", type="smallint", nullable=true)
+     * @ORM\Column(name="adserver", type="string", length=255, nullable=false, options={"default" : ""})
      */
-    protected $revenueType;
-
-    /**
-     * @ORM\Column(name="updated", type="datetime", nullable=false)
-     */
-    protected $updated;
+    protected $adServer;
 
     /**
      * @ORM\Column(name="block", type="integer", nullable=false, options={"default" : "0"})
@@ -125,73 +138,93 @@ class Campaigns extends ModelCampaigns
     protected $sessionCapping;
 
     /**
+     * @ORM\Column(name="compiledlimitation", type="text", nullable=false)
+     */
+    protected $compiledLimitation;
+
+    /**
+     * @ORM\Column(name="acl_plugins", type="text", nullable=true)
+     */
+    protected $aclPlugins;
+
+    /**
+     * @ORM\Column(name="append", type="text", nullable=false)
+     */
+    protected $append;
+
+    /**
+     * @ORM\Column(name="bannertype", type="integer", nullable=false, options={"default" : "0"})
+     */
+    protected $bannerType;
+
+    /**
+     * @ORM\Column(name="alt_filename", type="string", length=255, nullable=false, options={"default" : ""})
+     */
+    protected $altFilename;
+
+    /**
+     * @ORM\Column(name="alt_imageurl", type="string", length=255, nullable=false, options={"default" : ""})
+     */
+    protected $altImageUrl;
+
+    /**
+     * @ORM\Column(name="alt_contenttype", columnDefinition="enum('gif','jpeg','png') NOT NULL DEFAULT 'gif'")
+     */
+    protected $altContentType;
+
+    /**
+     * @ORM\Column(name="comments", type="text", nullable=true)
+     */
+    protected $comments;
+
+    /**
+     * @ORM\Column(name="updated", type="datetime", nullable=false)
+     */
+    protected $updated;
+
+    /**
+     * @ORM\Column(name="acls_updated", type="datetime", nullable=false, options={"default" : "0000-00-00 00:00:00"})
+     */
+    protected $aclsUpdated;
+
+    /**
+     * @ORM\Column(name="keyword", type="string", length=255, nullable=false, options={"default" : ""})
+     */
+    protected $keyword;
+
+    /**
+     * @ORM\Column(name="transparent", type="integer", nullable=false, options={"default" : "0"})
+     */
+    protected $transparent;
+
+    /**
+     * @ORM\Column(name="parameters", type="text", nullable=true)
+     */
+    protected $parameters;
+
+    /**
      * @ORM\Column(name="status", type="integer", nullable=false, options={"default" : "0"})
      */
     protected $status;
 
     /**
-     * @ORM\Column(name="hosted_views", type="integer", nullable=false, options={"default" : "0"})
+     * @ORM\Column(name="ext_bannertype", type="string", length=255, nullable=true)
      */
-    protected $hostedViews;
+    protected $extBannerType;
 
     /**
-     * @ORM\Column(name="hosted_clicks", type="integer", nullable=false, options={"default" : "0"})
+     * @ORM\Column(name="prepend", type="text", nullable=false)
      */
-    protected $hostedClicks;
+    protected $prepend;
 
     /**
-     * @ORM\Column(name="viewwindow", columnDefinition="mediumint(9) NOT NULL DEFAULT '0'")
+     * @ORM\OneToMany(targetEntity="AdZoneAssoc", mappedBy="banner", cascade={"persist"})
      */
-    protected $viewWindow;
-
-    /**
-     * @ORM\Column(name="clickwindow", columnDefinition="mediumint(9) NOT NULL DEFAULT '0'")
-     */
-    protected $clickWindow;
-
-    /**
-     * @ORM\Column(name="ecpm", columnDefinition="decimal(10,4) DEFAULT NULL")
-     */
-    protected $ecpm;
-
-    /**
-     * @ORM\Column(name="min_impressions", type="integer", nullable=false, options={"default" : "0"})
-     */
-    protected $minImpressions;
-
-    /**
-     * @ORM\Column(name="ecpm_enabled", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
-     */
-    protected $ecpmEnabled;
-
-    /**
-     * @ORM\Column(name="activate_time", type="datetime", nullable=true)
-     */
-    protected $activateTime;
-
-    /**
-     * @ORM\Column(name="expire_time", type="datetime", nullable=true)
-     */
-    protected $expireTime;
-
-    /**
-     * @ORM\Column(name="type", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
-     */
-    protected $type;
-
-    /**
-     * @ORM\Column(name="show_capped_no_cookie", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
-     */
-    protected $showCappedNoCookie;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Banners", mappedBy="campaign", cascade={"persist"})
-     */
-    protected $banners;
+    protected $assocs;
 
     public function __construct()
     {
-        $this->banners = new ArrayCollection();
+        $this->assocs = new ArrayCollection();
     }
 
 }
