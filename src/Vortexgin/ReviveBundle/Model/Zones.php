@@ -141,16 +141,6 @@ class Zones implements ZonesInterface
     protected $what;
 
     /**
-     * @var int $asZoneId
-     */
-    protected $asZoneId;
-
-    /**
-     * @var int $isInAdDirect
-     */
-    protected $isInAdDirect;
-
-    /**
      * @var float $rate
      */
     protected $rate;
@@ -708,46 +698,6 @@ class Zones implements ZonesInterface
     public function setWhat($what)
     {
         $this->what = $what;
-    }
-
-    /**
-     * Get As Zone ID
-     *
-     * @return int
-     */
-    public function getAsZoneId()
-    {
-        return $this->asZoneId;
-    }
-
-    /**
-     * Set As Zone ID
-     *
-     * @param int $asZoneId
-     */
-    public function setAsZoneId($asZoneId)
-    {
-        $this->asZoneId = $asZoneId;
-    }
-
-    /**
-     * Get Is In Ad Direct
-     *
-     * @return int
-     */
-    public function getIsInAdDirect()
-    {
-        return $this->isInAdDirect;
-    }
-
-    /**
-     * Set Is In Ad Direct
-     *
-     * @param int $isInAdDirect
-     */
-    public function setIsInAdDirect($isInAdDirect)
-    {
-        $this->isInAdDirect = $isInAdDirect;
     }
 
     /**

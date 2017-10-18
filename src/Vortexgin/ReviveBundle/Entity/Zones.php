@@ -160,16 +160,6 @@ class Zones extends ModelZones
     protected $what;
 
     /**
-     * @ORM\Column(name="as_zone_id", type="integer", nullable=true)
-     */
-    protected $asZoneId;
-
-    /**
-     * @ORM\Column(name="is_in_ad_direct", columnDefinition="tinyint(1) NOT NULL DEFAULT '0'")
-     */
-    protected $isInAdDirect;
-
-    /**
      * @ORM\Column(name="rate", columnDefinition="DECIMAL(19,2) DEFAULT NULL")
      */
     protected $rate;
