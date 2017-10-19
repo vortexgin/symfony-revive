@@ -33,7 +33,7 @@ class AdZoneAssocManager extends AbstractManager
         $this->repository = $this->em->getRepository('VortexginReviveBundle:AdZoneAssoc');
     }
 
-    public function findActiveZones()
+    public function findActiveZones(array $params = array())
     {
         $query = $this->repository->createQueryBuilder('assoc')
             ->innerJoin('assoc.zone', 'zones')
@@ -42,12 +42,15 @@ class AdZoneAssocManager extends AbstractManager
             ->innerJoin('banners.campaign', 'campaigns')
             ->where('assoc.toBeDelivered = :toBeDelivered')
             ->andWhere('banners.status = :bannerStatus')
-            ->andWhere('affiliates.id = :affiliateId')
             ->setParameter('toBeDelivered', 1)
-            ->setParameter('bannerStatus', 1)
-            ->setParameter('affiliateId', 4)
+            ->setParameter('bannerStatus', 0)
             ->orderBy('assoc.id', 'ASC')
         ;
+
+        if(array_key_exists('affiliate_id', $params)){
+            $query->andWhere('affiliates.id = :affiliateId')
+                ->setParameter('affiliateId', $params['affiliate_id']);
+        }
 
         return $this->getResult($query, Query::HYDRATE_OBJECT, true, 21600);
     }
